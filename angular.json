@@ -101,11 +101,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [{
-                    "ng": "ng",
-                    "start": "ng serve",
-                     "build": "ng build",
-                     "vercel-build": "ng build"            }
+            "scripts": [
+              
             ]
           }
         }
