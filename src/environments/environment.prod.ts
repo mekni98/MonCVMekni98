@@ -3,6 +3,6 @@ export const environment = {
   emailjs: {
     serviceID: 'DUMMY',
     templateID: 'DUMMY',
-    publicKey: 'EvtQ-DUMMY-GEmNc'
+    publicKey: 'DUMMY'
   }
 };
