@@ -101,7 +101,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [{
+                "vercel-build": "node replace-env.js && ng build --configuration production"
+            }
+            ]
           }
         }
       }
