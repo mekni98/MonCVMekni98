@@ -97,32 +97,42 @@
         <p class="text-gray-400 text-sm">Je réponds généralement sous 24h.</p>
       </div>
 
-      <form class="space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="flex flex-col">
-            <label class="text-gray-400 text-sm font-medium">Nom complet <span class="text-cyan-400">*</span></label>
-            <input type="text" placeholder="Jean Dupont" class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition" required>
-          </div>
-          <div class="flex flex-col">
-            <label class="text-gray-400 text-sm font-medium">Email <span class="text-cyan-400">*</span></label>
-            <input type="email" placeholder="jean@exemple.com" class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition" required>
-          </div>
-        </div>
+   <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="space-y-4">
 
-        <div class="flex flex-col">
-          <label class="text-gray-400 text-sm font-medium">Sujet</label>
-          <input type="text" placeholder="Proposition de collaboration…" class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition">
-        </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="flex flex-col">
+      <label>Nom complet <span class="text-cyan-400">*</span></label>
+      <input type="text" name="name" ngModel placeholder="Jean Dupont" required
+             class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition">
+    </div>
+    <div class="flex flex-col">
+      <label>Email <span class="text-cyan-400">*</span></label>
+      <input type="email" name="email" ngModel placeholder="jean@exemple.com" required
+             class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition">
+    </div>
+  </div>
 
-        <div class="flex flex-col">
-          <label class="text-gray-400 text-sm font-medium">Votre message <span class="text-cyan-400">*</span></label>
-          <textarea rows="5" placeholder="Décrivez votre projet ou votre besoin…" class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition" required></textarea>
-        </div>
+  <div class="flex flex-col">
+    <label>Sujet</label>
+    <input type="text" name="subject" ngModel placeholder="Proposition de collaboration…"
+           class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition">
+  </div>
 
-        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-400 text-slate-900 font-bold text-lg hover:opacity-90 hover:shadow-lg transition flex justify-center items-center gap-2">
-          Envoyer le message
-        </button>
-      </form>
+  <div class="flex flex-col">
+    <label>Votre message <span class="text-cyan-400">*</span></label>
+    <textarea name="message" ngModel rows="5" placeholder="Décrivez votre projet ou votre besoin…" required
+              class="p-3 rounded-xl bg-slate-700 border border-slate-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="sending"
+          class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-400 text-slate-900 font-bold text-lg hover:opacity-90 hover:shadow-lg transition flex justify-center items-center gap-2">
+    {{ sending ? 'Envoi…' : 'Envoyer le message' }}
+  </button>
+
+  <div *ngIf="successMessage" class="text-green-400 mt-2">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="text-red-400 mt-2">{{ errorMessage }}</div>
+
+</form>
     </div>
 
   </div>
